@@ -180,56 +180,40 @@
             color: var(--accent-color);
         }
 
-        /* --- Games Section --- */
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+        /* --- Games Overview Section --- */
+        .games-overview {
+            background-color: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        .games-overview .game-link-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
             margin-top: 30px;
         }
-        .game-card {
+        .games-overview .game-link-card {
             background-color: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            text-align: center;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .game-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-        .game-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--heading-color);
-            margin-top: 0;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-        .game-card p {
-            font-size: 1em;
-            color: var(--text-color);
-            flex-grow: 1; /* Allows paragraph to take available space */
-            margin-bottom: 25px;
-        }
-        .game-card a {
-            display: inline-block;
-            background-color: var(--button-bg);
-            color: var(--heading-color);
-            padding: 12px 28px;
-            border-radius: 6px;
             text-decoration: none;
+            color: var(--heading-color);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
             font-weight: 700;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
         }
-        .game-card a:hover {
-            background-color: var(--button-hover-bg);
+        .games-overview .game-link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            color: var(--accent-color);
         }
+
 
         /* --- Footer --- */
         .footer {
@@ -271,8 +255,9 @@
             .section-heading {
                 font-size: 2em;
             }
-            .game-grid {
-                grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+            .games-overview .game-link-grid {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -287,7 +272,7 @@
             </a>
             <div class="nav-links">
                 <a href="#about">About Us</a>
-                <a href="#games">Our Games</a>
+                <a href="#games-overview">Our Games</a>
                 <a href="https://discord.gg/TkRMUccXEt" target="_blank">Join Discord</a>
             </div>
         </div>
@@ -297,31 +282,24 @@
         <div class="hero-content">
             <h1>Your Next Adventure Starts Here!</h1>
             <p>Crafting engaging and innovative Roblox experiences for players worldwide.</p>
-            <a href="#games" class="cta-button">Explore Our Games</a>
+            <a href="#games-overview" class="cta-button">Explore Our Games</a>
         </div>
     </header>
 
     <div class="container">
         <section id="about" class="about-section">
             <h2 class="section-heading">About Us</h2>
-            <p>Welcome to **Ellie Velly Interactive**, a passionate Roblox game development studio dedicated to crafting engaging, innovative, and fun experiences for players worldwide!</p>
-            <p>Founded by Ellie Velly, our mission is to build vibrant virtual worlds and create games that inspire creativity, challenge skills, and provide endless entertainment. We specialize in exciting Tycoon games, like our popular titles **Pin Perfect Tycoon** and **Plane Merge Tycoon**, and are constantly working on new adventures for you to explore.</p>
+            <p>Welcome to <b>Ellie Velly Interactive,</b> a passionate Roblox game development studio dedicated to crafting engaging, innovative, and fun experiences for players worldwide!</p>
+            <p>Founded by Ellie Velly, our mission is to build vibrant virtual worlds and create games that inspire creativity, challenge skills, and provide endless entertainment. We specialize in exciting Tycoon games, and are constantly working on new adventures for you to explore.</p>
             <p>Join our community and be part of the journey as we continue to push the boundaries of fun on Roblox!</p>
         </section>
 
-        <section id="games">
+        <section id="games-overview" class="games-overview">
             <h2 class="section-heading">Our Games</h2>
-            <div class="game-grid">
-                <div class="game-card">
-                    <h3>Pin-Perfect Tycoon</h3>
-                    <p>Build your ultimate bowling alley in this fun, low-poly tycoon game. Score strikes and become the bowling mogul!</p>
-                    <a href="https://www.roblox.com/games/81944706704664/Pin-Perfect-Tycoon" target="_blank">Play on Roblox</a>
-                </div>
-                <div class="game-card">
-                    <h3>Plane Merge Tycoon</h3>
-                    <p>Merge planes, expand your airport, and become the biggest aviation tycoon. Your aerial empire awaits!</p>
-                    <a href="https://www.roblox.com/games/87329613184600/Plane-Merge-Tycoon" target="_blank">Play on Roblox</a>
-                </div>
+            <p>Discover the exciting worlds we've created. Click on a game to learn more!</p>
+            <div class="game-link-grid">
+                <a href="pin-perfect-tycoon.html" class="game-link-card">Pin-Perfect Tycoon</a>
+                <a href="plane-merge-tycoon.html" class="game-link-card">Plane Merge Tycoon</a>
             </div>
         </section>
     </div>
