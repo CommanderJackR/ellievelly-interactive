@@ -1,154 +1,335 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ellie Velly Interactive - Roblox Game Development</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-bg: #1a1a2e;
+            --secondary-bg: #24243e;
+            --accent-color: #e94560;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --button-bg: #e94560;
+            --button-hover-bg: #c93550;
+            --card-bg: #16213e;
+            --header-bg: #0f3460;
+            --footer-bg: #0f3460;
+            --border-color: #0d1e3e;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
-            background-color: #1a1a2e; /* Dunkler Hintergrund */
-            color: #e0e0e0; /* Helle Schrift */
-            line-height: 1.6;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.7;
+            scroll-behavior: smooth;
         }
-        .header {
-            background-color: #0f3460; /* Dunkelblauer Header */
-            padding: 20px 0;
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            background-color: var(--header-bg);
+            padding: 15px 0;
             text-align: center;
-            border-bottom: 3px solid #e94560; /* Akzentlinie */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .header img.logo {
-            max-width: 100px; /* Kleinere Logogröße */
+        .navbar .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .navbar .logo-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--heading-color);
+        }
+        .navbar .logo {
+            max-width: 60px;
             height: auto;
-            margin-bottom: 10px;
+            margin-right: 15px;
         }
-        .header h1 {
-            color: #ffffff;
-            margin: 0;
-            font-size: 2.5em;
+        .navbar .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-transform: uppercase;
         }
-        .hero-banner {
+        .navbar .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .navbar .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
             width: 100%;
-            height: 300px; /* Feste Höhe für das Banner */
+            height: 450px; /* Increased height for impact */
             background-image: url('https://i.ibb.co/fzxmhdNT/Gemini-Generated-Image-kou7xzkou7xzkou7.png');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffffff;
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-        }
-        .container {
-            max-width: 960px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #24243e; /* Etwas hellerer Hintergrund für den Inhalt */
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        h2 {
-            color: #e94560; /* Akzentfarbe für Überschriften */
+            color: var(--heading-color);
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2em;
+            position: relative;
+            overflow: hidden;
         }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.8em; /* Larger heading */
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+        .hero-content p {
+            font-size: 1.4em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--button-bg);
+            color: var(--heading-color);
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+        .cta-button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-3px);
+        }
+
+        /* --- Main Content Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .section-heading {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.8em;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--heading-color);
+            border-radius: 2px;
+        }
+
+        /* --- About Us Section --- */
+        .about-section {
+            background-color: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        .about-section p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            color: var(--text-color);
+        }
+        .about-section strong {
+            color: var(--accent-color);
+        }
+
+        /* --- Games Section --- */
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
             margin-top: 30px;
         }
         .game-card {
-            background-color: #16213e; /* Hintergrundfarbe für Spielkarten */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .game-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
         .game-card h3 {
-            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--heading-color);
             margin-top: 0;
-            font-size: 1.5em;
+            font-size: 1.8em;
+            margin-bottom: 15px;
         }
         .game-card p {
-            font-size: 0.9em;
-            color: #cccccc;
+            font-size: 1em;
+            color: var(--text-color);
+            flex-grow: 1; /* Allows paragraph to take available space */
+            margin-bottom: 25px;
         }
         .game-card a {
             display: inline-block;
-            background-color: #e94560; /* Buttonfarbe */
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 5px;
+            background-color: var(--button-bg);
+            color: var(--heading-color);
+            padding: 12px 28px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
+            font-weight: 700;
+            font-size: 1.1em;
             transition: background-color 0.3s ease;
         }
         .game-card a:hover {
-            background-color: #c93550; /* Dunklere Farbe beim Hover */
+            background-color: var(--button-hover-bg);
         }
+
+        /* --- Footer --- */
         .footer {
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            background-color: #0f3460;
-            color: #cccccc;
-            font-size: 0.9em;
+            padding: 40px 20px;
+            margin-top: 60px;
+            background-color: var(--footer-bg);
+            color: var(--text-color);
+            font-size: 0.95em;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
         }
         .footer a {
-            color: #e94560;
+            color: var(--accent-color);
             text-decoration: none;
+            font-weight: 600;
         }
         .footer a:hover {
             text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none; /* Hide nav links on small screens for simplicity */
+            }
+            .navbar .nav-container {
+                justify-content: center; /* Center logo on small screens */
+            }
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+            .hero-content p {
+                font-size: 1.1em;
+            }
+            .cta-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+            .section-heading {
+                font-size: 2em;
+            }
+            .game-grid {
+                grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="https://i.ibb.co/v4RJhCtb/Chat-GPT-Image-2-Aug-2025-19-11-25-removebg-preview.png" alt="Ellie Velly Interactive Logo" class="logo">
-        <h1>Ellie Velly Interactive</h1>
-        <p>Your Adventure Starts Here</p>
-    </div>
-
-    <div class="hero-banner">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo-brand">
+                <img src="https://i.ibb.co/v4RJhCtb/Chat-GPT-Image-2-Aug-2025-19-11-25-removebg-preview.png" alt="Ellie Velly Interactive Logo" class="logo">
+                <span class="brand-name">Ellie Velly Interactive</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">About Us</a>
+                <a href="#games">Our Games</a>
+                <a href="https://discord.gg/TkRMUccXEt" target="_blank">Join Discord</a>
+            </div>
         </div>
+    </nav>
+
+    <header id="home" class="hero-section">
+        <div class="hero-content">
+            <h1>Your Next Adventure Starts Here!</h1>
+            <p>Crafting engaging and innovative Roblox experiences for players worldwide.</p>
+            <a href="#games" class="cta-button">Explore Our Games</a>
+        </div>
+    </header>
 
     <div class="container">
-        <h2>Unsere Spiele</h2>
-        <div class="game-grid">
-            <div class="game-card">
-                <h3>Pin-Perfect Tycoon</h3>
-                <p>Baue deine ultimative Bowlingbahn in diesem spaßigen Low-Poly Tycoon-Spiel. Erziele Strikes und werde zum Bowling-Mogul!</p>
-                <a href="https://www.roblox.com/games/81944706704664/Pin-Perfect-Tycoon" target="_blank">Jetzt spielen auf Roblox</a>
-            </div>
-            <div class="game-card">
-                <h3>Plane Merge Tycoon</h3>
-                <p>Verschmelze Flugzeuge, baue deinen Flughafen aus und werde zum größten Luftfahrt-Tycoon. Dein Flugzeugimperium wartet!</p>
-                <a href="https://www.roblox.com/games/87329613184600/Plane-Merge-Tycoon" target="_blank">Jetzt spielen auf Roblox</a>
-            </div>
-        </div>
+        <section id="about" class="about-section">
+            <h2 class="section-heading">About Us</h2>
+            <p>Welcome to **Ellie Velly Interactive**, a passionate Roblox game development studio dedicated to crafting engaging, innovative, and fun experiences for players worldwide!</p>
+            <p>Founded by Ellie Velly, our mission is to build vibrant virtual worlds and create games that inspire creativity, challenge skills, and provide endless entertainment. We specialize in exciting Tycoon games, like our popular titles **Pin Perfect Tycoon** and **Plane Merge Tycoon**, and are constantly working on new adventures for you to explore.</p>
+            <p>Join our community and be part of the journey as we continue to push the boundaries of fun on Roblox!</p>
+        </section>
 
-        <h2>Über Uns</h2>
-        <p>Willkommen bei <strong>Ellie Velly Interactive</strong>, einem leidenschaftlichen Roblox Game Development Studio, das sich der Entwicklung von fesselnden, innovativen und unterhaltsamen Erlebnissen für Spieler weltweit verschrieben hat!</p>
-        <p>Gegründet von Ellie Velly, ist es unsere Mission, lebendige virtuelle Welten zu schaffen und Spiele zu entwickeln, die Kreativität inspirieren, Fähigkeiten herausfordern und endlose Unterhaltung bieten. Wir sind auf aufregende Tycoon-Spiele spezialisiert und arbeiten ständig an neuen Abenteuern, die du erkunden kannst.</p>
-        <p>Tritt unserer Community bei und sei Teil der Reise, während wir die Grenzen des Spielspaßes auf Roblox immer weiter ausdehnen!</p>
+        <section id="games">
+            <h2 class="section-heading">Our Games</h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <h3>Pin-Perfect Tycoon</h3>
+                    <p>Build your ultimate bowling alley in this fun, low-poly tycoon game. Score strikes and become the bowling mogul!</p>
+                    <a href="https://www.roblox.com/games/81944706704664/Pin-Perfect-Tycoon" target="_blank">Play on Roblox</a>
+                </div>
+                <div class="game-card">
+                    <h3>Plane Merge Tycoon</h3>
+                    <p>Merge planes, expand your airport, and become the biggest aviation tycoon. Your aerial empire awaits!</p>
+                    <a href="https://www.roblox.com/games/87329613184600/Plane-Merge-Tycoon" target="_blank">Play on Roblox</a>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="footer">
-        &copy; 2025 Ellie Velly Interactive. Alle Rechte vorbehalten.
-        <p>Folge uns auf <a href="https://discord.gg/TkRMUccXEt" target="_blank">Discord</a> für die neuesten Updates!</p>
-    </div>
+    <footer class="footer">
+        &copy; 2025 Ellie Velly Interactive. All rights reserved.
+        <p>Join our community on <a href="https://discord.gg/TkRMUccXEt" target="_blank">Discord</a> for the latest updates!</p>
+    </footer>
 
 </body>
 </html>
