@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Merge Tycoon - Ellie Velly Interactive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #1a1a2e;
+            --secondary-bg: #24243e;
+            --accent-color: #e94560;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --button-bg: #e94560;
+            --button-hover-bg: #c93550;
+            --card-bg: #16213e;
+            --header-bg: #0f3460;
+            --footer-bg: #0f3460;
+            --border-color: #0d1e3e;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Navigation Bar (reused) --- */
+        .navbar {
+            background-color: var(--header-bg);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .navbar .logo-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--heading-color);
+        }
+        .navbar .logo {
+            max-width: 60px;
+            height: auto;
+            margin-right: 15px;
+        }
+        .navbar .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .navbar .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .navbar .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Main Content Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .section-heading {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.8em;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--heading-color);
+            border-radius: 2px;
+        }
+
+        .game-detail-section {
+            background-color: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        .game-detail-section h2 {
+            color: var(--heading-color);
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .game-detail-section p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--text-color);
+        }
+        .game-detail-section .play-button {
+            display: inline-block;
+            background-color: var(--button-bg);
+            color: var(--heading-color);
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+        .game-detail-section .play-button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer (reused) --- */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            background-color: var(--footer-bg);
+            color: var(--text-color);
+            font-size: 0.95em;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none;
+            }
+            .navbar .nav-container {
+                justify-content: center;
+            }
+            .game-detail-section h2 {
+                font-size: 2.2em;
+            }
+            .game-detail-section p {
+                font-size: 1em;
+            }
+            .game-detail-section .play-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-brand">
+                <img src="https://i.ibb.co/v4RJhCtb/Chat-GPT-Image-2-Aug-2025-19-11-25-removebg-preview.png" alt="Ellie Velly Interactive Logo" class="logo">
+                <span class="brand-name">Ellie Velly Interactive</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#games-overview">Our Games</a>
+                <a href="https://discord.gg/TkRMUccXEt" target="_blank">Join Discord</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="game-detail-section">
+            <h2 class="section-heading">Plane Merge Tycoon</h2>
+            <p>Welcome to **Plane Merge Tycoon**! Dive into a unique idle game where you build your ultimate aviation empire. Start with simple planes, **merge** them to unlock bigger, better models, and expand your fleet across exciting new airports.</p>
+            <p>Grow your wealth, optimize your routes, and become the most successful airline tycoon Roblox has ever seen! Unlock new islands, discover rare aircraft, and dominate the skies with your ever-growing fleet.</p>
+            <a href="https://www.roblox.com/games/87329613184600/Plane-Merge-Tycoon" target="_blank" class="play-button">Play Plane Merge Tycoon on Roblox</a>
+        </section>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 Ellie Velly Interactive. All rights reserved.
+        <p>Join our community on <a href="https://discord.gg/TkRMUccXEt" target="_blank">Discord</a> for the latest updates!</p>
+    </footer>
+
+</body>
+</html>
